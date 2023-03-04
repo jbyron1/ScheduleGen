@@ -5,6 +5,7 @@
     "twitter" : "@Evo",
     "hashtag" : "#Evo2022",
     "time zone" : "America/Los_Angeles",
+    "time format" : "12h",
 
     "days" : [
         {
@@ -28,13 +29,6 @@
                         "start" : "16:00:00",
                         "end"   : "22:00:00",
                         "color_id" : 1
-                    },
-                    {
-                        "game":"Fake",
-                        "round":"LMAO",
-                        "start" : "15:15:00",
-                        "end" : "21:30:00",
-                        "color_id" : 2
                     }
                 ]
                 },
@@ -53,15 +47,8 @@
                             "game" : "T7",
                             "round" : "Pools - Round 1 ",
                             "start" : "18:00:00",
-                            "end"   : "22:00:00",
+                            "end"   : "21:00:00",
                             "color_id" : 1
-                        },
-                        {
-                            "game":"Fake",
-                            "round":"LMAO",
-                            "start" : "15:15:00",
-                            "end" : "21:30:00",
-                            "color_id" : 2
                         }
                     ]
                     }

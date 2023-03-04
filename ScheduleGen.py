@@ -19,13 +19,9 @@ r = draw.Rectangle(10, 10, 40, 50, fill='#1248ff')
 r.append_title("recty")
 d.append(r)
 
-class Image(draw.DrawingBasicElement):
-    TAG_NAME = 'image'
-    def __init__(self, x, y, width, height, href, preserveAspectRatio, target=None, **kwargs):
-        super().__init__(x=x, y=y, width=width, href=href, preserveAspectRatio=preserveAspectRatio, target=target, **kwargs)
 
 
-im = Image(10, 10, 60, 60, "./AELogo.png", "xMidYMid")
+im = drawfunc.Image(10, 10, 60, 60, "./AELogo.png", "xMidYMid")
 d.append(im)
 d.save_svg('test.svg')
 
@@ -39,6 +35,7 @@ for day in event['event']['days']:
     earliest_block = None
     latest_block = None
     num_streams = len(day['streams'])
+    blocks_start_times = []
     for stream in day['streams']:
         stream_earliest = None
         stream_latest = None
@@ -46,6 +43,7 @@ for day in event['event']['days']:
             start_str = (date + ' ' + block['start'])
             start_dt = datetime.strptime(start_str, "%m-%d-%Y %H:%M:%S")
             start_dt = start_dt.replace(tzinfo = time_zone)
+            blocks_start_times.append(start_dt)
 
             end_str = (date + ' ' + block['end'])
             end_dt = datetime.strptime(end_str, "%m-%d-%Y %H:%M:%S")
@@ -63,43 +61,58 @@ for day in event['event']['days']:
         if latest_block == None or stream_latest > latest_block:
             latest_block = stream_latest
 
+    blocks_start_times.sort()
+    dt = datetime(2022, 8, 4, 15, 15, tzinfo=time_zone) + timedelta(minutes=45)
+    if dt in blocks_start_times:
+        print("yeah boy")
+    print(blocks_start_times)
+    print(latest_block.utcoffset() > timedelta(0))
+    offset = None
+    if latest_block.utcoffset() < timedelta(0):
+        offset = -int((-latest_block.utcoffset().seconds + 86400) / 3600)
+    else:
+        offset = int(latest_block.utcoffset().seconds / 3600)
+    print(str(offset))
 
 
-    print(latest_block)
     diff = latest_block - earliest_block
     diff_s = diff.total_seconds()
-    time_blocks = divmod(diff_s, 900)[0]
+    time_blocks = int(divmod(diff_s, 900)[0]) + 1
     width_cells = STREAM_LOGO_BOX_WIDTH + STREAM_LINK_BOX_WIDTH + time_blocks*STREAM_15_MINUTE_WIDTH
     width_pixels = width_cells * CELL_WIDTH
     height_cells = STREAM_TIME_ZONE_BOX_HEIGHT + STREAM_LINK_BOX_HEIGHT * num_streams
     height_pixels = height_cells * CELL_HEIGHT
 
-    d = draw.Drawing(width_pixels + 10, height_pixels + 10)
-    r = draw.Rectangle(0,0, width_pixels, height_pixels, stroke = 'black', stroke_width = 1, fill = "grey")
-    cur_coords = (1,1)
+    d = draw.Drawing(width_pixels, height_pixels)
+    r = draw.Rectangle(0,0, width_pixels, height_pixels, stroke = 'black', stroke_width = 0, fill = "grey")
     
-    time_zone_group = draw.Group()
-   
-   
-    stream_day = drawfunc.draw_day_box(day['day'])
-
-    cur_coords = (cur_coords[0] + 0, cur_coords[1] + stream_day[1])
-    stream_zone_name = drawfunc.draw_zone_name_box(time_zone_name)
-
-    time_zone_group.append(stream_day[2])
-    time_zone_group.append(stream_zone_name[2])
-
-    obj_height = (STREAM_DAY_BOX_HEIGHT + STREAM_ZONE_NAME_HEIGHT) * CELL_HEIGHT
-    obj_width = (STREAM_ZONE_NAME_WIDTH + STREAM_TIME_ZONE_BOX_WIDTH) * CELL_WIDTH
-    time_zone_group.append(draw.Rectangle(0,0, obj_width, obj_height, stroke = "black", stroke_width = 1, fill='None'))
-
-    
-
     d.append(r)
     #d.append(draw.Text('Basic text', 8, 10, 10, fill='blue'))
     #d.append(stream_day)
     #d.append(stream_zone_name)
-    d.append(time_zone_group)
+    top_bar = drawfunc.draw_top_row(event["event"]["time format"],time_blocks, blocks_start_times, day, time_zone_name, offset)
+    stream_logo = drawfunc.draw_stream_logo(".\EVO1.png", transform=f"translate({0}, {top_bar[1] - .5})")
+    stream_link = drawfunc.draw_stream_link("twitch.tv/", "teamSp00ky", transform=f"translate( {stream_logo[0] - .5}, {top_bar[1] - .5})")
+    for stream in day["streams"]:
+        starts = []
+        ends = []
+        for block in stream["blocks"]:
+            start_str = (date + ' ' + block['start'])
+            start_dt = datetime.strptime(start_str, "%m-%d-%Y %H:%M:%S")
+            start_dt = start_dt.replace(tzinfo = time_zone)
+
+            end_str = (date + ' ' + block['end'])
+            end_dt = datetime.strptime(end_str, "%m-%d-%Y %H:%M:%S")
+            end_dt = end_dt.replace(tzinfo = time_zone)
+
+            
+
+        
+
+    d.append(top_bar[2])
+    d.append(stream_logo[2])
+    d.append(stream_link[2])
+    #d.append(blank)
     d.save_svg('test2.svg')
 
         
