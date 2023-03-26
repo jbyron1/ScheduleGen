@@ -298,7 +298,7 @@ def draw_stream(stream, start_time, time_blocks, date, time_zone, color_map, tra
 
 
 
-def draw_dayStreams(day, start_time, time_blocks, date, time_zone, color_map, time_format,
+def draw_dayStreams(day, start_time, date, time_zone, color_map, time_format,
              cell_count, block_list, dayName, zone_name, offset, transform=f"translate({0}, {0})"):
 
     
@@ -311,7 +311,7 @@ def draw_dayStreams(day, start_time, time_blocks, date, time_zone, color_map, ti
     for stream in day["streams"]:
         vertical_offset = (top_bar[1] - 0) + (len(ready_blocks) * ((STREAM_HOUR_BOX_HEIGHT * CELL_HEIGHT)))
         obj_height += STREAM_HOUR_BOX_HEIGHT * CELL_HEIGHT
-        stream_row = draw_stream(stream,start_time, time_blocks, date, time_zone, color_map, transform=f"translate({0}, {vertical_offset})")
+        stream_row = draw_stream(stream,start_time, cell_count, date, time_zone, color_map, transform=f"translate({0}, {vertical_offset})")
         ready_blocks.append(stream_row)
         dayGroup.append(stream_row[2])
 
@@ -381,13 +381,9 @@ def draw_cv_time_cell(time, transform=f"translate({0}, {0})"):
     return obj_width, obj_height, filled_cell
 
 def draw_conversion_row_blocks(cell_count, block_start_times, conversion_zone, format, transform=f"translate({0}, {0})"):
-
     times = draw.Group(transform=transform)
-   
-    
-    
+
     start_time = block_start_times[0]
-    print(start_time.utcoffset())
     start_day = start_time.day
     cur_step = start_time.astimezone(conversion_zone)
     day1_blocks = 0
@@ -396,11 +392,9 @@ def draw_conversion_row_blocks(cell_count, block_start_times, conversion_zone, f
         cur_step = cur_step + timedelta(minutes=15)
 
     day2_blocks = cell_count - day1_blocks
-
     tz_blanks = draw_timezone_cells(day1_blocks, day2_blocks)
 
     start_time = start_time.astimezone(conversion_zone)
-    print(start_time)
     times.append(tz_blanks[2])
     obj_width = tz_blanks[0]
     obj_height = tz_blanks[1]
@@ -414,7 +408,6 @@ def draw_conversion_row_blocks(cell_count, block_start_times, conversion_zone, f
         times.append(time_block[2])
 
     return obj_width, obj_height, times
-
 
 def draw_conversion_row(tz_name, time_blocks, block_times, format,  transform=f"translate({0}, {0})"):
     CV_Row = draw.Group(transform=transform)
@@ -454,5 +447,48 @@ def draw_conversion_box(day, zones, time_blocks, block_times,  transform=f"trans
 
     return obj_width, obj_height, CV_Box
 
+def draw_day(day, time_zone_name, format, cv_zones, c_map):
+    
+    earliest = None
+    latest = None
+    host_zone = ZoneInfo(time_zone_name)
+    date = day['date']
+    start_times = []
+    for stream in day['streams']:
+        for block in stream['blocks']:
+            start_str = date + ' ' + block['start']
+            start_dt = datetime.strptime(start_str, "%m-%d-%Y %H:%M:%S")
+            start_dt = start_dt.replace(tzinfo=host_zone)
+            start_times.append(start_dt)
+
+            end_str = date + ' ' + block['end']
+            end_dt = datetime.strptime(end_str, "%m-%d-%Y %H:%M:%S")
+            end_dt = end_dt.replace(tzinfo=host_zone)
+
+            if earliest == None or start_dt < earliest:
+                earliest = start_dt
+
+            if latest == None or latest < end_dt:
+                latest = end_dt
+
+    start_times.sort()
+    
+    offset = calc_offset(earliest)
+
+    diff = latest - earliest
+    diff_s = diff.total_seconds()
+    num_time_blocks = int(divmod(diff_s, 900)[0])
 
 
+    
+
+    streams = draw_dayStreams(day, earliest, date, host_zone, c_map, format, num_time_blocks, start_times, day, time_zone_name, offset)
+    cv_box = draw_conversion_box(day, cv_zones, num_time_blocks, start_times, transform=f"translate({0}, {streams[1] + (TIME_BOX_GAP_HEIGHT * CELL_HEIGHT)})")
+
+    width = streams[0]
+    height = streams[1] + cv_box[1] + (TIME_BOX_GAP_HEIGHT * CELL_HEIGHT)
+    day_canvas = draw.Drawing(width, height)
+    day_canvas.append(draw.Rectangle(0,0,width, height, fill="grey"))
+    day_canvas.append(streams[2])
+    day_canvas.append(cv_box[2])
+    day_canvas.save_svg('day_test.svg')
