@@ -94,7 +94,7 @@
                                 "start" : "17:00:00",
                                 "end"   : "19:00:00",
                                 "color" : 3,
-                                "shifted" : true
+                                "shifted" : false
                             }
                         ]
                         },
@@ -178,7 +178,7 @@
                                 "start" : "14:00:00",
                                 "end"   : "17:00:00",
                                 "color" : "ff80ed",
-                                "shifted" : true
+                                "shifted" : false
                             },
                             {
                                 "game" : "King of Fighters XV",
@@ -187,12 +187,334 @@
                                 "start" : "18:00:00",
                                 "end"   : "22:00:00",
                                 "color" : 8,
-                                "shifted" : true
+                                "shifted" : false
                             }
                         ]
                     }
 
 
+            ]
+        },
+        {
+            "day" : "Saturday",
+            "date" : "08-05-2022",
+            "streams" : [
+                {
+                    "stream" : "Evo",
+                    "platform" : "twitch.tv/",
+                    "stream_logo" :"E:\\Acekingoffsuit clone\\Streamer Logos\\EVO1.png",
+                    "blocks" : [
+                        {
+                            "game" : "Mortal Kombat 11",
+                            "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\MK11U.png",
+                            "round" : "Top 8",
+                            "start" : "10:00:00",
+                            "end" : "13:45:00",
+                            "color" : 3,
+                            "shifted" : false
+                        },
+                        {
+                            "game" : "Melty Blood: Type Lumina",
+                            "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\MBTL.png",
+                            "round" : "Top 8 ",
+                            "start" : "14:00:00",
+                            "end"   : "16:45:00",
+                            "color" : 5,
+                            "shifted" : false
+                        },
+                        {
+                            "game" : "Granblue Fantasy Vs.",
+                            "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\GBVS.png",
+                            "round" : "Top 8",
+                            "start" : "17:00:00",
+                            "end"   : "19:45:00",
+                            "color" : 1,
+                            "shifted" : false
+                        },
+                        {
+                            "game" : "Dragon Ball FighterZ",
+                            "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\DBFZ.png",
+                            "round" : "Top 8 ",
+                            "start" : "20:00:00",
+                            "end"   : "23:00:00",
+                            "color" : 6,
+                            "shifted" : false
+                        }
+                    ]
+                },
+                {
+                "stream" : "Evo2",
+                "platform" : "twitch.tv/",
+                "stream_logo" : "E:\\Acekingoffsuit clone\\Streamer Logos\\EVO2.png",
+                "blocks" : [
+                    {
+                        "game" : "Guilty Gear Strive",
+                        "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\GGStrive_Logo.png",
+                        "round" : "Pools - Round 1",
+                        "start" : "10:00:00",
+                        "end"   : "14:00:00",
+                        "color" : 0,
+                        "shifted" : false
+                    },
+                    {
+                        "game" : "Guilty Gear Strive",
+                        "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\GGStrive_Logo.png",
+                        "round" : "Pools - Round 2 Top 384 to Top 96",
+                        "start" : "14:00:00",
+                        "end"   : "18:00:00",
+                        "color" : 0,
+                        "shifted" : false
+                    },
+                    {
+                        "game" : "Guilty Gear Strive",
+                        "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\GGStrive_Logo.png",
+                        "round" : "Qtrs. - Top 96 to Top 24",
+                        "start" : "19:00:00",
+                        "end"   : "21:00:00",
+                        "color" : 0,
+                        "shifted" : false
+                    },
+                    {
+                        "game" : "Guilty Gear Strive",
+                        "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\GGStrive_Logo.png",
+                        "round" : "Semis - Top 24 to Top 8",
+                        "start" : "21:00:00",
+                        "end"   : "23:00:00",
+                        "color" : 0,
+                        "shifted" : false
+                    }
+                ]
+                },
+                {
+                    "stream" : "Evo3",
+                    "platform" : "twitch.tv/",
+                    "stream_logo" : "E:\\Acekingoffsuit clone\\Streamer Logos\\Evo3.png",
+                    "blocks" : [
+                        {
+                            "game" : "Tekken 7",
+                            "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\Tekken7.png",
+                            "round" : "Pools - Round 1 cont.",
+                            "start" : "10:00:00",
+                            "end"   : "14:00:00",
+                            "color" : 2,
+                            "shifted" : false
+                        },
+                        {
+                            "game" : "Tekken 7",
+                            "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\Tekken7.png",
+                            "round" : "Quarterfinals - Top 192 to Top 48 ",
+                            "start" : "14:00:00",
+                            "end"   : "18:00:00",
+                            "color" : 2,
+                            "shifted" : false
+                        },
+                        {
+                            "game" : "Tekken 7",
+                            "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\Tekken7.png",
+                            "round" : "Semifinals - Top 48 to Top 8 ",
+                            "start" : "19:00:00",
+                            "end"   : "22:00:00",
+                            "color" : 2,
+                            "shifted" : false
+                        }
+                    ]
+                    },
+                    {
+                        "stream" : "Evo4",
+                        "platform" : "twitch.tv/",
+                        "stream_logo" : "E:\\Acekingoffsuit clone\\Streamer Logos\\Evo4.png",
+                        "blocks" : [
+                            {
+                                "game" : "Granblue Fantasy Vs.",
+                                "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\GBVS.png",
+                                "round" : "Qtrs. - Top 96 to Top 24",
+                                "start" : "10:00:00",
+                                "end"   : "12:00:00",
+                                "color" : 1,
+                                "shifted" : false
+                            },
+                            {
+                                "game" : "Granblue Fantasy Vs.",
+                                "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\GBVS.png",
+                                "round" : "Qtrs. - Top 24 to Top 8",
+                                "start" : "12:00:00",
+                                "end"   : "14:00:00",
+                                "color" : 1,
+                                "shifted" : false
+                            },
+                            {
+                                "game" : "Multiversus",
+                                "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\Multiversus.png",
+                                "round" : "Top 32 to Top 8",
+                                "start" : "15:00:00",
+                                "end"   : "17:00:00",
+                                "color" : 10,
+                                "shifted" : false
+                            },
+                            {
+                                "game" : "Multiversus",
+                                "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\Multiversus.png",
+                                "round" : "Top 8",
+                                "start" : "17:00:00",
+                                "end"   : "20:00:00",
+                                "color" : 10,
+                                "shifted" : false
+                            }
+                        ]
+                        },
+                    {
+                        "stream" : "Evo5",
+                        "platform" : "twitch.tv/",
+                        "stream_logo" : "E:\\Acekingoffsuit clone\\Streamer Logos\\Evo5.png",
+                        "blocks" : [
+                            {
+                                "game" : "Street Fighter V: Champion Edition",
+                                "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\SFVCE.png",
+                                "round" : "Pools - Round 1 (Continued)",
+                                "start" : "10:00:00",
+                                "end"   : "14:00:00",
+                                "color" : 4,
+                                "shifted" : false
+                            },
+                            {
+                                "game" : "Street Fighter V: Champion Edition",
+                                "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\SFVCE.png",
+                                "round" : "Quarterfinals - Top 192 to Top 48 ",
+                                "start" : "15:00:00",
+                                "end"   : "19:00:00",
+                                "color" : 4,
+                                "shifted" : false
+                            },
+                            {
+                                "game" : "Street Fighter V: Champion Edition",
+                                "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\SFVCE.png",
+                                "round" : "Semifinals - Top 48 to Top 8 ",
+                                "start" : "19:00:00",
+                                "end"   : "22:00:00",
+                                "color" : 4,
+                                "shifted" : false
+                            }
+                        ]
+                    },
+                    {
+                        "stream" : "Evo6",
+                        "platform" : "twitch.tv/",
+                        "stream_logo" : "E:\\Acekingoffsuit clone\\Streamer Logos\\Evo6.png",
+                        "blocks" : [
+                            {
+                                "game" : "Dragon Ball FighterZ",
+                                "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\DBFZ.png",
+                                "round" : "Pools - Round 1 (Continued)",
+                                "start" : "10:00:00",
+                                "end"   : "14:00:00",
+                                "color" : 6,
+                                "shifted" : false
+                            },
+                            {
+                                "game" : "Dragon Ball FighterZ",
+                                "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\DBFZ.png",
+                                "round" : "Qtrs. - Top 128 to Top 24",
+                                "start" : "14:00:00",
+                                "end"   : "16:00:00",
+                                "color" : 6,
+                                "shifted" : false
+                            },
+                            {
+                                "game" : "Dragon Ball FighterZ",
+                                "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\DBFZ.png",
+                                "round" : "Semis - Top 24 to Top 8",
+                                "start" : "17:00:00",
+                                "end"   : "19:00:00",
+                                "color" : 6,
+                                "shifted" : false
+                            }
+                        ]
+                    },
+                    {
+                        "stream" : "Evo7",
+                        "platform" : "twitch.tv/",
+                        "stream_logo" : "E:\\Acekingoffsuit clone\\Streamer Logos\\Evo7.png",
+                        "blocks" : [
+                            {
+                                "game" : "King of Fighters XV",
+                                "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\KOF15.png",
+                                "round" : "Pools - Round 1 (Continued)",
+                                "start" : "10:00:00",
+                                "end"   : "14:00:00",
+                                "color" : 8,
+                                "shifted" : false
+                            },
+                            {
+                                "game" : "King of Fighters XV",
+                                "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\KOF15.png",
+                                "round" : "Quarterfinals - Top 192 to Top 48 ",
+                                "start" : "14:00:00",
+                                "end"   : "18:00:00",
+                                "color" : 8,
+                                "shifted" : false
+                            },
+                            {
+                                "game" : "King of Fighters XV",
+                                "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\KOF15.png",
+                                "round" : "Semifinals - Top 48 to Top 8 ",
+                                "start" : "19:00:00",
+                                "end"   : "22:00:00",
+                                "color" : 8,
+                                "shifted" : false
+                            }
+                        ]
+                    }
+
+
+            ]
+        },
+        {
+            "day" : "Sunday",
+            "date" : "08-06-2022",
+            "streams" : [
+                {
+                "stream" : "Evo",
+                "platform" : "twitch.tv/",
+                "stream_logo" : "E:\\Acekingoffsuit clone\\Streamer Logos\\EVO1.png",
+                "blocks" : [
+                    {
+                        "game" : "King of Fighters XV",
+                        "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\KOF15.png",
+                        "round" : "Top 8 ",
+                        "start" : "10:00:00",
+                        "end"   : "13:15:00",
+                        "color" : 8,
+                        "shifted" : false
+                    },
+                    {
+                        "game" : "Tekken 7",
+                        "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\Tekken7.png",
+                        "round" : "Top 8 ",
+                        "start" : "13:30:00",
+                        "end"   : "16:45:00",
+                        "color" : 2,
+                        "shifted" : false
+                    },
+                    {
+                        "game" : "Street Fighter V: Champion Edition",
+                        "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\SFVCE.png",
+                        "round" : "Top 8",
+                        "start" : "17:00:00",
+                        "end"   : "19:45:00",
+                        "color" : 4,
+                        "shifted" : false
+                    },
+                    {
+                        "game" : "Guilty Gear Strive",
+                        "game_logo" : "E:\\Acekingoffsuit clone\\Game Logos\\GGStrive_Logo.png",
+                        "round" : "Top 8",
+                        "start" : "20:00:00",
+                        "end"   : "23:00:00",
+                        "color" : 0,
+                        "shifted" : false
+                    }
+                ]
+                }
             ]
         }
     ],

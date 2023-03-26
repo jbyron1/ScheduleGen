@@ -294,14 +294,10 @@ def draw_stream(stream, start_time, time_blocks, date, time_zone, color_map, tra
 
     return obj_width, obj_height, stream_row
 
-
-
-
-
+#draw all the streams for a day
 def draw_dayStreams(day, start_time, date, time_zone, color_map, time_format,
              cell_count, block_list, dayName, zone_name, offset, transform=f"translate({0}, {0})"):
 
-    
     dayGroup = draw.Group(transform=transform)
     top_bar = draw_top_row(time_format, cell_count, block_list, dayName, zone_name, offset)
     obj_width = top_bar[0]
@@ -317,6 +313,7 @@ def draw_dayStreams(day, start_time, date, time_zone, color_map, time_format,
 
     return obj_width, obj_height, dayGroup
 
+#draw the box that says what day the time zones are
 def draw_conversion_header(day, num_cells, transform=f"translate({0}, {0})"):
     obj_width = (STREAM_TIME_ZONE_BOX_WIDTH + STREAM_DAY_BOX_WIDTH + (STREAM_15_MINUTE_WIDTH * num_cells)) * CELL_WIDTH
     obj_height = CONVERSION_HEADER_HEIGHT * CELL_HEIGHT
@@ -330,6 +327,7 @@ def draw_conversion_header(day, num_cells, transform=f"translate({0}, {0})"):
     header.append(text)
     return obj_width, obj_height, header
 
+#draw the time zone name
 def draw_conversion_row_text(text, transform=f"translate({0}, {0})"):
     obj_width = TIME_ZONE_TEXT_WIDTH * CELL_WIDTH
     obj_height = TIME_ZONE_ROW_HEIGHT * CELL_HEIGHT
@@ -357,6 +355,7 @@ def draw_conversion_offset_box(offset,  transform=f"translate({0}, {0})"):
     offset_box.append(draw.Text(string, 14, obj_width/2, obj_height/2, center=True, fill="black", font_weight="bold", font_family="Arial"))
     return obj_width, obj_height, offset_box
 
+#draws the blank cells in the correct colors corresponding to the days
 def draw_timezone_cells(day1_count, day2_count, transform=f"translate({0}, {0})"):
     conversion_data_row = draw.Group(transform=transform)
 
@@ -380,6 +379,7 @@ def draw_cv_time_cell(time, transform=f"translate({0}, {0})"):
     filled_cell.append(text)
     return obj_width, obj_height, filled_cell
 
+#draws the converted times
 def draw_conversion_row_blocks(cell_count, block_start_times, conversion_zone, format, transform=f"translate({0}, {0})"):
     times = draw.Group(transform=transform)
 
@@ -409,6 +409,7 @@ def draw_conversion_row_blocks(cell_count, block_start_times, conversion_zone, f
 
     return obj_width, obj_height, times
 
+#draw a complete converted row for a time zone
 def draw_conversion_row(tz_name, time_blocks, block_times, format,  transform=f"translate({0}, {0})"):
     CV_Row = draw.Group(transform=transform)
 
@@ -428,6 +429,7 @@ def draw_conversion_row(tz_name, time_blocks, block_times, format,  transform=f"
 
     return obj_width, obj_height, CV_Row
 
+#draw all converted time zones
 def draw_conversion_box(day, zones, time_blocks, block_times,  transform=f"translate({0}, {0})"):
     CV_Box = draw.Group(transform=transform)
 
@@ -447,7 +449,8 @@ def draw_conversion_box(day, zones, time_blocks, block_times,  transform=f"trans
 
     return obj_width, obj_height, CV_Box
 
-def draw_day(day, time_zone_name, format, cv_zones, c_map):
+#draw the entirety of a stream day
+def draw_day(event_name, day, time_zone_name, format, cv_zones, c_map):
     
     earliest = None
     latest = None
@@ -479,9 +482,6 @@ def draw_day(day, time_zone_name, format, cv_zones, c_map):
     diff_s = diff.total_seconds()
     num_time_blocks = int(divmod(diff_s, 900)[0])
 
-
-    
-
     streams = draw_dayStreams(day, earliest, date, host_zone, c_map, format, num_time_blocks, start_times, day, time_zone_name, offset)
     cv_box = draw_conversion_box(day, cv_zones, num_time_blocks, start_times, transform=f"translate({0}, {streams[1] + (TIME_BOX_GAP_HEIGHT * CELL_HEIGHT)})")
 
@@ -491,4 +491,6 @@ def draw_day(day, time_zone_name, format, cv_zones, c_map):
     day_canvas.append(draw.Rectangle(0,0,width, height, fill="grey"))
     day_canvas.append(streams[2])
     day_canvas.append(cv_box[2])
-    day_canvas.save_svg('day_test.svg')
+
+    filename = event_name + day['day'] + '.svg'
+    day_canvas.save_svg(filename)
